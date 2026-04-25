@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oasis | لوحة تحكم الأدمن</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3a7bd5;
+            --secondary: #00d2ff;
+            --dark: #020617;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            margin: 0;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .container { padding: 20px; max-width: 1200px; margin: auto; }
+
+        /* كروت الإحصائيات */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border-bottom: 4px solid var(--secondary);
+        }
+        .stat-card i { font-size: 2rem; margin-bottom: 10px; color: var(--secondary); }
+        .stat-card h2 { margin: 5px 0; font-size: 1.5rem; }
+
+        /* الجداول */
+        .admin-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+        h3 { border-right: 4px solid var(--secondary); padding-right: 10px; margin-bottom: 20px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        th, td {
+            text-align: right;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        th { color: var(--secondary); }
+
+        /* الأزرار */
+        .btn-sm {
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Cairo';
+            margin-left: 5px;
+        }
+        .btn-confirm { background: var(--success); color: white; }
+        .btn-reject { background: var(--danger); color: white; }
+        .btn-primary { background: var(--primary); color: white; width: 100%; padding: 12px; margin-top: 10px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: white;
+            outline: none;
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+        .badge-pending { background: var(--warning); color: black; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-user-shield"></i> لوحة تحكم الإدارة</h1>
+        <p>إدارة منصة Oasis الاستثمارية</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-wallet"></i>
+                <p>إجمالي الإيداعات</p>
+                <h2>$12,450</h2>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-hourglass-half"></i>
+                <p>سحوبات معلقة</p>
+                <h2 style="color: var(--warning);">9 طلبات</h2>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <p>المستخدمين</p>
+                <h2>1,240</h2>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-chart-pie"></i>
+                <p>أرباح اليوم</p>
+                <h2 style="color: var(--success);">+$450</h2>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h3><i class="fas fa-plus-circle"></i> إضافة رصيد لمستخدم</h3>
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px;">
+                <input type="email" placeholder="بريد المستخدم الإلكتروني">
+                <input type="number" placeholder="المبلغ $">
+                <button class="btn-primary" onclick="alert('تمت إضافة الرصيد بنجاح!')">إضافة الآن</button>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h3><i class="fas fa-file-invoice-dollar"></i> طلبات الإيداع (BEP20)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>المستخدم</th>
+                        <th>المبلغ</th>
+                        <th>TXID (رقم المعاملة)</th>
+                        <th>الحالة</th>
+                        <th>الإجراء</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>user@example.com</td>
+                        <td>$50.00</td>
+                        <td style="font-family: monospace; font-size: 0.8rem;">0x71...f6d8</td>
+                        <td><span class="badge badge-pending">في انتظار التأكيد</span></td>
+                        <td>
+                            <button class="btn-sm btn-confirm">تأكيد</button>
+                            <button class="btn-sm btn-reject">حذف</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="admin-section">
+            <h3><i class="fas fa-money-bill-wave"></i> طلبات السحب المعلقة</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>المستخدم</th>
+                        <th>المبلغ (قبل الخصم)</th>
+                        <th>الصافي (-10%)</th>
+                        <th>المحفظة</th>
+                        <th>الإجراء</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ali_99@mail.com</td>
+                        <td>$100.00</td>
+                        <td style="color: var(--success);">$90.00</td>
+                        <td style="font-size: 0.8rem;">0x82...a112</td>
+                        <td>
+                            <button class="btn-sm btn-confirm">قبول وتحويل</button>
+                            <button class="btn-sm btn-reject" onclick="prompt('أدخل سبب الرفض:')">رفض</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <footer style="text-align: center; color: #64748b; font-size: 0.8rem; margin-top: 30px;">
+        لوحة تحكم خاصة بالأدمن @suui_7
+    </footer>
+
+</body>
+</html>
